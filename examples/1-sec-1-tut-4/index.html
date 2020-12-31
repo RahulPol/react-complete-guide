@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Problem: Create cards for every user in your app
+    Solution-A: A simple solution is to use pure html and css approach as given below -->
+    <div><b>Without React</b></div>
+    <div class="person">
+      <h1>Rahul Pol</h1>
+      <p>Age: 32</p>
+    </div>
+    <div class="person">
+      <h1>Pranali Pol</h1>
+      <p>Age: 31</p>
+    </div>
+
+    <div><b>With React</b></div>
+    <!-- Approach-B: Another approach is to create a react component that generates card for user. 
+                To achieve it, we will create a div wit id app which will be replaced by react component, refer babel code below for more info -->
+    <div id="app"></div>
+
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+      // Approach-B: Create a react component that will generate card for any person
+
+      // It can be achieved easily by creating a function which will return custom HTML(though seems HTML its actually JSX)
+      // depending on the parameters.
+      // Note: props is not any random name, whenever you create Person Component with attributes the attributes are passed as object
+      // which is represented as props in react component
+      function Person(props) {
+        return (
+          <div className="person">
+            <h1>{props.name}</h1>
+            <p>Age: {props.age}</p>
+          </div>
+        );
+      }
+
+      // Now, react has created a component for person in order to show or rather render it on UI you will need to use ReactDOM.
+      // It is done deliberately by react as they wanted display part separate from react component this way a component can be
+      // rendered any where like on browser (if you use ReactDOM) or mobile (if you use React Native) etc.
+
+      // following is a jsx syntax, it basically means that you are returning two Person tag which are enclosed in div
+      // If you inspect the element with id app on browser you will find that app contains two person ie the code returned
+      // by Person function(component).
+      var app = (
+        <div>
+          <Person name="Rahul Pol" age="32" />
+          <Person name="Pranali Pol" age="31" />
+        </div>
+      );
+
+      ReactDOM.render(app, document.getElementById("app"));
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>
