@@ -11,6 +11,7 @@ class App extends Component {
       { name: "Aadhya Rahul Pol", age: 1 },
     ],
     otherState: "other state value",
+    showPersons: false,
   };
 
   switchNameHandler = (newName) => {
@@ -34,11 +35,15 @@ class App extends Component {
   };
 
   style = {
-    "background-color": "white",
+    backgroundColor: "white",
     font: "inherit",
     border: "1px solid blue",
     padding: "8px",
     cursor: "pointer",
+  };
+
+  togglePersonsHandler = () => {
+    this.setState({ showPersons: !this.state.showPersons });
   };
 
   render() {
@@ -46,31 +51,28 @@ class App extends Component {
       <div className="App">
         <h1>Hi, this is react app</h1>
         <p>This is really working!!</p>
-        <button
-          style={this.style}
-          onClick={this.switchNameHandler.bind(this, "Rahul V. Pol")}
-        >
-          Switch Name
+        <button style={this.style} onClick={this.togglePersonsHandler}>
+          Toggle Persons
         </button>
 
-        {/* Ok! I have passed the method reference that will update the state of
-        parent component but the method reference takes static name what if I
-        want to update dynamically from my child component */}
-
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={() => this.switchNameHandler("Rahul Pol")}
-          changed={this.nameChangedHandler}
-        />
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        />
+        {this.state.showPersons ? (
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              click={() => this.switchNameHandler("Rahul Pol")}
+              changed={this.nameChangedHandler}
+            />
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }
