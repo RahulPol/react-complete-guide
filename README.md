@@ -21,3 +21,22 @@ Scalable cause your components are not only independant they are reusable as wel
 Another way of thinking component as a custom HTML elements, as they return html at the end.
 
 As an exersise go through any web app build with react and try to debug its components. You will need to use react developer tools for your browser.
+
+#### Next generation Javascript
+
+For all features - https://developer.mozilla.org/en-US/docs/Archive/Web/JavaScript/New_in_JavaScript/ECMAScript_2015_support_in_Mozilla
+
+For individual features
+
+1. let - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+2. const - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+3. arrow function - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+4. modules(export/import) - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+5. classes - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+6. strict mode - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+7. spread and rest - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+8. destructuring - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+9. value vs reference types in js - https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0
+   https://www.javascripttutorial.net/javascript-primitive-vs-reference-values/
+10. map - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+11. array properties and methods - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Instance_properties
