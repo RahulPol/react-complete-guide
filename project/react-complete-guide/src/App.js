@@ -3,20 +3,15 @@ import "./App.css";
 
 class App extends Component {
   render() {
-    // return (
-    //   <div className="App">
-    //     <h1>Hi, this is react app</h1>
-    //   </div>
-    // );
-
-    // the jsx written above gets converted into javascript code as shown below
-    // but as you can see it is very difficult to write code like this, thus we use
-    // jsx syntax which is easy to understand and comes naturally as we have worked on html
-    // In order to convert the jsx to js we use babel tool
-    return React.createElement(
-      "div",
-      { className: "App" },
-      React.createElement("h1", null, "Hi, this is react app")
+    // Restrictions of JSX
+    // 1. There are few reserved keywords that you can't use in JSX, for eg. class, you can not use
+    //   class keyword to specify css class as it has different meaning in js
+    // 2. You can not return multiple elements from component there must be one return element per component
+    //
+    return (
+      <div className="App">
+        <h1>Hi, this is react app</h1>
+      </div>
     );
   }
 }
