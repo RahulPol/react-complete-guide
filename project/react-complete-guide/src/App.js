@@ -47,6 +47,32 @@ class App extends Component {
   };
 
   render() {
+    let persons = null;
+
+    if (this.state.showPersons) {
+      // Render content conditionally javascript way
+      // Though it seems preferred I liked previous way cause in that way you are not filling the elements through functions
+      // Instead they are available at single place in render function
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            click={() => this.switchNameHandler("Rahul Pol")}
+            changed={this.nameChangedHandler}
+          />
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi, this is react app</h1>
@@ -55,24 +81,7 @@ class App extends Component {
           Toggle Persons
         </button>
 
-        {this.state.showPersons ? (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-            />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              click={() => this.switchNameHandler("Rahul Pol")}
-              changed={this.nameChangedHandler}
-            />
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-            />
-          </div>
-        ) : null}
+        {this.state.showPersons ? persons : null}
       </div>
     );
   }
