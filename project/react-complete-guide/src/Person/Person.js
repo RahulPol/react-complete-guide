@@ -1,10 +1,11 @@
 import React from "react";
 
-const Person = () => {
+// you can collect properties inside props parameter
+const Person = (props) => {
   return (
-    //This is really simple way of making your content dynamic, of course you
-    // can call function, or use properties received from  component
-    <p> I am a person and I am {Math.ceil(Math.random() * 30)} years old</p>
+    <p>
+      I am a {props.name} and I am {props.age} years old
+    </p>
   );
 };
 

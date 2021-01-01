@@ -9,9 +9,11 @@ class App extends Component {
       <div className="App">
         <h1>Hi, this is react app</h1>
         <p>This is really working!!</p>
-        <Person />
-        <Person />
-        <Person />
+
+        {/* the attributes are passed as properties to your components */}
+        <Person name="Rahul Vishnu Pol" age="32" />
+        <Person name="Pranali Rahul Pol" age="31" />
+        <Person name="Aadhya Rahul Pol" age="1" />
       </div>
     );
   }
