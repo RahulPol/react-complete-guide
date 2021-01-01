@@ -10,10 +10,14 @@ class App extends Component {
       { name: "Pranali Rahul Pol", age: 31 },
       { name: "Aadhya Rahul Pol", age: 1 },
     ],
+    otherState: "other state value",
   };
 
   switchNameHandler = () => {
     // DON'T DO THIS: this.state.persons[1] = { name: "Pranali Dagadu Kadam", age: 31 },
+    // Note: the set state does not overwrite the state instead it will update only persons array
+    // in your state, keeping the otherState intact.
+    // This is not the case with functional component's useState
     this.setState({
       persons: [
         { name: "Rahul Vishnu Pol", age: 32 },
