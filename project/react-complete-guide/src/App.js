@@ -46,29 +46,28 @@ class App extends Component {
     this.setState({ showPersons: !this.state.showPersons });
   };
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({ persons });
+  };
+
   render() {
     let persons = null;
 
     if (this.state.showPersons) {
-      // Render content conditionally javascript way
-      // Though it seems preferred I liked previous way cause in that way you are not filling the elements through functions
-      // Instead they are available at single place in render function
       persons = (
         <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-          />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={() => this.switchNameHandler("Rahul Pol")}
-            changed={this.nameChangedHandler}
-          />
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-          />
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                key={index}
+                name={person.name}
+                age={person.age}
+                click={this.deletePersonHandler}
+              />
+            );
+          })}
         </div>
       );
     }
