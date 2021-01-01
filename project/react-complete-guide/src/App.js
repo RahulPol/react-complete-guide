@@ -47,7 +47,14 @@ class App extends Component {
   };
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    // assigning persons this way is bad practice cause array are objects in js
+    // and now you have reference copy of state.persons thus changing persons now
+    // will result in mutating state, a better way is to copy the entire array
+    // either using slice() or spread operator
+    // const persons = this.state.persons;
+
+    const persons = [...this.state.persons];
+
     persons.splice(personIndex, 1);
     this.setState({ persons });
   };
