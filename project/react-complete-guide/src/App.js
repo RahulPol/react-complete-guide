@@ -1,7 +1,23 @@
 import React, { Component } from "react";
-import "./App.css";
+import styled from "styled-components";
 
+import "./App.css";
 import Person from "./Person/Person";
+
+const StyledButton = styled.button`
+  background-color: ${(props) => (props.toggleStyle ? "red" : "green")};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.toggleStyle ? "salmon" : "lightgreen"};
+    color: black;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -38,14 +54,6 @@ class App extends Component {
     this.setState({ persons });
   };
 
-  style = {
-    backgroundColor: "white",
-    font: "inherit",
-    border: "1px solid blue",
-    padding: "8px",
-    cursor: "pointer",
-  };
-
   togglePersonsHandler = () => {
     this.setState({ showPersons: !this.state.showPersons });
   };
@@ -75,15 +83,31 @@ class App extends Component {
           })}
         </div>
       );
+      // style.backgroundColor = "red";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black",
+      // };
+    }
+
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push("red");
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push("bold");
     }
 
     return (
       <div className="App">
         <h1>Hi, this is react app</h1>
-        <p>This is really working!!</p>
-        <button style={this.style} onClick={this.togglePersonsHandler}>
+        <p className={classes.join(" ")}>This is really working!!</p>
+        <StyledButton
+          toggleStyle={this.state.showPersons}
+          onClick={this.togglePersonsHandler}
+        >
           Toggle Persons
-        </button>
+        </StyledButton>
 
         {this.state.showPersons ? persons : null}
       </div>
