@@ -17,6 +17,11 @@ const StyledDiv = styled.div`
 `;
 
 const Person = (props) => {
+  const rnd = Math.random();
+  if (rnd > 0.7) {
+    throw new Error("Invalid random number");
+  }
+
   return (
     // <div className="Person" style={style}>
     <StyledDiv>

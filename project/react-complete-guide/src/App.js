@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import "./App.css";
 import Person from "./Person/Person";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 const StyledButton = styled.button`
   background-color: ${(props) => (props.toggleStyle ? "red" : "green")};
@@ -72,22 +73,18 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return (
-              <Person
-                key={person.id}
-                name={person.name}
-                age={person.age}
-                click={this.deletePersonHandler}
-                changed={(e) => this.nameChangedHandler(e, person.id)}
-              />
+              <ErrorBoundary key={person.id}>
+                <Person
+                  name={person.name}
+                  age={person.age}
+                  click={this.deletePersonHandler}
+                  changed={(e) => this.nameChangedHandler(e, person.id)}
+                />
+              </ErrorBoundary>
             );
           })}
         </div>
       );
-      // style.backgroundColor = "red";
-      // style[":hover"] = {
-      //   backgroundColor: "salmon",
-      //   color: "black",
-      // };
     }
 
     let classes = [];
