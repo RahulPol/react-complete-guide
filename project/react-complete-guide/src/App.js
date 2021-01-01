@@ -6,9 +6,9 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { name: "Rahul Vishnu Pol", age: 32 },
-      { name: "Pranali Rahul Pol", age: 31 },
-      { name: "Aadhya Rahul Pol", age: 1 },
+      { id: 1, name: "Rahul Vishnu Pol", age: 32 },
+      { id: 2, name: "Pranali Rahul Pol", age: 31 },
+      { id: 3, name: "Aadhya Rahul Pol", age: 1 },
     ],
     otherState: "other state value",
     showPersons: false,
@@ -24,14 +24,18 @@ class App extends Component {
     });
   };
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: "Rahul Vishnu Pol", age: 32 },
-        { name: event.target.value, age: 31 },
-        { name: "Aadhya Rahul Pol", age: 1 },
-      ],
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex((person) => {
+      return person.id === id;
     });
+    const person = {
+      ...this.state.persons[personIndex],
+      name: event.target.value,
+    };
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({ persons });
   };
 
   style = {
@@ -47,14 +51,7 @@ class App extends Component {
   };
 
   deletePersonHandler = (personIndex) => {
-    // assigning persons this way is bad practice cause array are objects in js
-    // and now you have reference copy of state.persons thus changing persons now
-    // will result in mutating state, a better way is to copy the entire array
-    // either using slice() or spread operator
-    // const persons = this.state.persons;
-
     const persons = [...this.state.persons];
-
     persons.splice(personIndex, 1);
     this.setState({ persons });
   };
@@ -68,10 +65,11 @@ class App extends Component {
           {this.state.persons.map((person, index) => {
             return (
               <Person
-                key={index}
+                key={person.id}
                 name={person.name}
                 age={person.age}
                 click={this.deletePersonHandler}
+                changed={(e) => this.nameChangedHandler(e, person.id)}
               />
             );
           })}
