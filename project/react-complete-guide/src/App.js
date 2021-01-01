@@ -12,7 +12,11 @@ class App extends Component {
 
         {/* the attributes are passed as properties to your components */}
         <Person name="Rahul Vishnu Pol" age="32" />
-        <Person name="Pranali Rahul Pol" age="31" />
+        {/* the content of custom component can be accessed using props.children, which refers to 
+        anything in between person tag, even other html elements */}
+        <Person name="Pranali Rahul Pol" age="31">
+          My hobby is racing cars
+        </Person>
         <Person name="Aadhya Rahul Pol" age="1" />
       </div>
     );
