@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import "./Person.css";
+import Aux from "../../higherOrderComponents/Auxiliary";
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -20,17 +21,19 @@ class Person extends Component {
   render() {
     console.log("[Person.js] rendering...");
     return (
-      // <div className="Person" style={style}>
-      <StyledDiv>
-        <p onClick={this.props.click}>
-          I am {this.props.name} and I am {this.props.age} years old
-        </p>
-        <input
-          type="text"
-          onChange={this.props.changed}
-          value={this.props.name}
-        />
-      </StyledDiv>
+      <Aux>
+        <p>What!!! Rendering adjacent elements</p>
+        <StyledDiv>
+          <p onClick={this.props.click}>
+            I am {this.props.name} and I am {this.props.age} years old
+          </p>
+          <input
+            type="text"
+            onChange={this.props.changed}
+            value={this.props.name}
+          />
+        </StyledDiv>
+      </Aux>
     );
   }
 }
