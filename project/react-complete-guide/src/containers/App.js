@@ -1,24 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 
 import "./App.css";
-import Person from "./Person/Person";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-
-const StyledButton = styled.button`
-  background-color: ${(props) => (props.toggleStyle ? "red" : "green")};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) =>
-      props.toggleStyle ? "salmon" : "lightgreen"};
-    color: black;
-  }
-`;
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -66,27 +50,6 @@ class App extends Component {
   };
 
   render() {
-    let persons = null;
-
-    if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <ErrorBoundary key={person.id}>
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  click={this.deletePersonHandler}
-                  changed={(e) => this.nameChangedHandler(e, person.id)}
-                />
-              </ErrorBoundary>
-            );
-          })}
-        </div>
-      );
-    }
-
     let classes = [];
     if (this.state.persons.length <= 2) {
       classes.push("red");
@@ -97,16 +60,18 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Hi, this is react app</h1>
-        <p className={classes.join(" ")}>This is really working!!</p>
-        <StyledButton
-          toggleStyle={this.state.showPersons}
-          onClick={this.togglePersonsHandler}
-        >
-          Toggle Persons
-        </StyledButton>
-
-        {this.state.showPersons ? persons : null}
+        <Cockpit
+          classes={classes.join(" ")}
+          showPersons={this.state.showPersons}
+          click={this.togglePersonsHandler}
+        />
+        {this.state.showPersons ? (
+          <Persons
+            persons={this.state.persons}
+            click={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+          />
+        ) : null}
       </div>
     );
   }
