@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import "./Cockpit.css";
+
 const StyledButton = styled.button`
   background-color: ${(props) => (props.toggleStyle ? "red" : "green")};
   color: white;
@@ -19,8 +21,8 @@ const StyledButton = styled.button`
 const Cockpit = (props) => {
   return (
     <div>
-      <h1>Hi, this is react app</h1>
-      <p className={props.classes}>This is really working!!</p>
+      <h1>{props.title}</h1>
+      <p className={props.classes}>This is really working!</p>
       <StyledButton toggleStyle={props.showPersons} onClick={props.click}>
         Toggle Persons
       </StyledButton>
