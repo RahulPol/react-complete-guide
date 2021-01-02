@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import "./Cockpit.css";
@@ -92,13 +92,16 @@ const StyledButton = styled.button`
 // this is useful for case where you want to perform some activity after every render and clean up that activity as well
 
 const Cockpit = (props) => {
+  const toggleBtnRef = useRef(null);
+
   useEffect(() => {
     console.log("[Cockpit.js] useEffect");
-    const timer = setTimeout(() => {
-      alert("fetched data");
-    }, 1000);
+    // const timer = setTimeout(() => {
+    //   alert("fetched data");
+    // }, 1000);
+    toggleBtnRef.current.click();
     return () => {
-      clearTimeout(timer);
+      // clearTimeout(timer);
       console.log("[Cockpit.js] clean up work in useEffect");
     };
   }, []);
@@ -115,7 +118,11 @@ const Cockpit = (props) => {
     <div>
       <h1>{props.title}</h1>
       <p className={props.classes}>This is really working!</p>
-      <StyledButton toggleStyle={props.showPersons} onClick={props.click}>
+      <StyledButton
+        ref={toggleBtnRef}
+        toggleStyle={props.showPersons}
+        onClick={props.click}
+      >
         Toggle Persons
       </StyledButton>
     </div>
