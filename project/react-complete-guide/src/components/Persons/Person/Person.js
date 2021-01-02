@@ -20,6 +20,16 @@ const StyledDiv = styled.div`
 `;
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+
+  componentDidMount() {
+    // console.log("[Person.js] componentDidMount");
+    this.inputElementRef.current.focus();
+  }
+
   render() {
     console.log("[Person.js] rendering...");
     return (
@@ -33,6 +43,7 @@ class Person extends Component {
             type="text"
             onChange={this.props.changed}
             value={this.props.name}
+            ref={this.inputElementRef}
           />
         </StyledDiv>
       </Aux>
