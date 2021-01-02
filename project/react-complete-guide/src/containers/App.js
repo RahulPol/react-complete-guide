@@ -63,6 +63,7 @@ class App extends Component {
     otherState: "other state value",
     showPersons: true,
     showCockpit: true,
+    changeCounter: 0,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -104,7 +105,16 @@ class App extends Component {
 
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-    this.setState({ persons });
+    // you could have directly written changeCounter: this.state.changeCounter+1
+    // but in react the state update happen asynchronously means it is guaranteed
+    // but not instantaneous thus you might have dirty read. Updating state following
+    // way ensures the correct update
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
+    });
   };
 
   togglePersonsHandler = () => {
