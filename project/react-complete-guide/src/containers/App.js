@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({ persons });
   };
 
-  render() {
+  getClassesForCockpit = () => {
     let classes = [];
     if (this.state.persons.length <= 2) {
       classes.push("red");
@@ -57,11 +57,15 @@ class App extends Component {
     if (this.state.persons.length <= 1) {
       classes.push("bold");
     }
+    return classes.join(" ");
+  };
 
+  render() {
     return (
       <div className="App">
         <Cockpit
-          classes={classes.join(" ")}
+          title={this.props.appTitle}
+          classes={this.getClassesForCockpit()}
           showPersons={this.state.showPersons}
           click={this.togglePersonsHandler}
         />

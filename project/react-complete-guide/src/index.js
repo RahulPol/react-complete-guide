@@ -5,5 +5,8 @@ import App from "./containers/App";
 // import App from "./AppFunctional";
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <App appTitle="Person Manager" />,
+  document.getElementById("root")
+);
 registerServiceWorker();
