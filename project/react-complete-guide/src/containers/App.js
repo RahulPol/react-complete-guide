@@ -40,6 +40,11 @@ import Cockpit from "../components/Cockpit/Cockpit";
 //    - Called immediately after updating occurs. Not called for the initial render.
 //    - DON'T update state.(triggers re-render)
 
+// Other method
+//  1. componentWillUnmount
+//     -use: to perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in componentDidMount
+//     - Called immediately before a component is destroyed
+
 class App extends Component {
   constructor(props) {
     super(props);
