@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import "./Cockpit.css";
@@ -18,7 +18,23 @@ const StyledButton = styled.button`
   }
 `;
 
+// useEffect
+// useEffect is the second most important hook you can use after useState.
+// It combines the functionality of componentDidMount, componentDidUpdate
+// and componentWillUnmount life cycle method
+
+// useEffect as a default takes an anonymous function that will be executed for every render cycle
+// The following code will run for every render cycle
+// useEffect(() => {
+//     console.log("[Cockpit.js] useEffect");
+//   });
+// so consider this as componentDidMound and componentDidUpdate life cycle method in its default usage
+
 const Cockpit = (props) => {
+  useEffect(() => {
+    console.log("[Cockpit.js] useEffect");
+  });
+
   console.log("[Cockpit.js] rendering...");
   return (
     <div>
