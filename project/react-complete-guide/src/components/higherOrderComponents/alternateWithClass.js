@@ -1,11 +1,11 @@
 import React from "react";
 
 const alternateWithClass = (WrappedComponent, classes) => {
-  return (props) => {
+  return (props) => (
     <div className={classes}>
-      <WrappedComponent />
-    </div>;
-  };
+      <WrappedComponent {...props} />
+    </div>
+  );
 };
 
 export default alternateWithClass;

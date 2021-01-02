@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import "./Person.css";
 import Aux from "../../higherOrderComponents/Auxiliary";
+import withClass from "../../higherOrderComponents/alternateWithClass";
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -38,4 +39,4 @@ class Person extends Component {
   }
 }
 
-export default Person;
+export default withClass(Person, "r");
