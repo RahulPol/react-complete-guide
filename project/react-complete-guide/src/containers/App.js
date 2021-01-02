@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import WithClass from "../components/higherOrderComponents/WithClass";
 
 // Component creation life cycle
 // 1. constructor(props)
@@ -130,7 +131,7 @@ class App extends Component {
   render() {
     console.log("[App.js] rendering...");
     return (
-      <div className="App">
+      <WithClass classes="App">
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -155,7 +156,7 @@ class App extends Component {
             changed={this.nameChangedHandler}
           />
         ) : null}
-      </div>
+      </WithClass>
     );
   }
 }
