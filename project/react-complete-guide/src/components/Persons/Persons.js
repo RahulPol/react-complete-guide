@@ -8,6 +8,10 @@ class Persons extends Component {
   //   return state;
   // }
 
+  componentDidMount() {
+    console.log("[Persons.js] componentDidMount");
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[Persons.js] shouldComponentUpdate");
     return true;
