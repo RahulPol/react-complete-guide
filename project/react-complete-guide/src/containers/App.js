@@ -5,6 +5,13 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
+  // note: though we have written state outside here, it is actually placed in the constructor
+  // by js and initialized with this.state in constructor
   state = {
     persons: [
       { id: 1, name: "Rahul Vishnu Pol", age: 32 },
@@ -14,6 +21,15 @@ class App extends Component {
     otherState: "other state value",
     showPersons: false,
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("[App.js] componentDidMount");
+  }
 
   switchNameHandler = (newName) => {
     this.setState({
@@ -61,6 +77,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] rendering...");
     return (
       <div className="App">
         <Cockpit

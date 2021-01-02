@@ -19,6 +19,7 @@ const StyledButton = styled.button`
 `;
 
 const Cockpit = (props) => {
+  console.log("[Cockpit.js] rendering...");
   return (
     <div>
       <h1>{props.title}</h1>
