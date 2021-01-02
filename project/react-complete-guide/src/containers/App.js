@@ -4,6 +4,42 @@ import "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
+// Component creation life cycle
+// 1. constructor(props)
+//    - use: for setting up state
+//    - DON'T cause side-effects
+// 2. static getDerivedStateFromProps(props, state)
+//    - use: for sync state to props
+//    - DON'T cause side-effects
+// 3. render()
+//    - use: for preparing and structuring your jsx code
+// 4. Render Child Component
+// 5. componentDidMount()
+//    - use: to cause side-effects
+//    - DON'T update state. (triggers re-render)
+
+// Component update life cycle
+// 1. static getDerivedStateFromProps(props,state)
+//    - use: for sync state to props
+//    - DON'T cause side-effects
+// 2. shouldComponentUpdate(nextProps, nextState)
+//    - decide whether component should update
+//    - use: for performance improvement by deciding whether to continue component update or not
+//    - return false wil stop component update
+//    - DON'T cause side-effects
+// 3. render()
+//    - use: for preparing and structuring your jsx code
+// 4. Update child component props
+// 5. static getSnapshotBeforeUpdate(prevProps, prevState)
+//    - Runs before React applies the result of render to the document, and returns an object to be given to componentDidUpdate
+//    - use: for saving things such as scroll position before render causes changes to it.
+//    - returns snapshot to be consumed by componentDidUpdate
+//    - DON'T cause side-effect
+// 6. componentDidUpdate(prevProps, prevState, snapshot)
+//    - use: to cause side-effects
+//    - Called immediately after updating occurs. Not called for the initial render.
+//    - DON'T update state.(triggers re-render)
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +55,7 @@ class App extends Component {
       { id: 3, name: "Aadhya Rahul Pol", age: 1 },
     ],
     otherState: "other state value",
-    showPersons: false,
+    showPersons: true,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -29,6 +65,15 @@ class App extends Component {
 
   componentDidMount() {
     console.log("[App.js] componentDidMount");
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js] shouldComponentUpdate");
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log("[App.js] componentDidUpdate");
   }
 
   switchNameHandler = (newName) => {
