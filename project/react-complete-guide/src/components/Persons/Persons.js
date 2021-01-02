@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
 import Person from "./Person/Person";
 
-class Persons extends Component {
+class Persons extends PureComponent {
   // static getDerivedStateFromProps(props, state) {
   //   console.log("[Persons.js] getDerivedStateFromProps", props);
   //   return state;
@@ -12,10 +12,23 @@ class Persons extends Component {
     console.log("[Persons.js] componentDidMount");
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[Persons.js] shouldComponentUpdate");
-    return nextProps.persons !== this.props.persons;
-  }
+  // the shouldComponentUpdate is not implemented correctly
+  // as it does not check all props like click an changed
+  // so its better we implement that check
+  // the code is correct after the implementation but react provides a better way using Pure Component
+  // Pure component is nothing but component with implementation of shouldComponentUpdate with
+  // all necessary checks, thus commenting out this code
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[Persons.js] shouldComponentUpdate");
+  //   if (
+  //     nextProps.persons !== this.props.persons ||
+  //     nextProps.click !== this.props.click ||
+  //     nextProps.changed !== this.props.changed
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   render() {
     console.log("[Persons.js] rendering...");
