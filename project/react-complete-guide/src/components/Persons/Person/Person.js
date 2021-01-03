@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import "./Person.css";
 import Aux from "../../higherOrderComponents/Auxiliary";
 import withClass from "../../higherOrderComponents/alternateWithClass";
+import AuthContext from "../../../context/auth-context";
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -25,6 +26,8 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
+  static contextType = AuthContext;
+
   componentDidMount() {
     // console.log("[Person.js] componentDidMount");
     this.inputElementRef.current.focus();
@@ -36,6 +39,16 @@ class Person extends Component {
       <Aux>
         <p>What!!! Rendering adjacent elements</p>
         <StyledDiv>
+          {this.context.authenticated ? (
+            <p>Authenticated</p>
+          ) : (
+            <p>Please login</p>
+          )}
+          {/* <AuthContext.Consumer>
+            {(context) =>
+              context.authenticated ? <p>Authenticated</p> : <p>Please login</p>
+            }
+          </AuthContext.Consumer> */}
           <p onClick={this.props.click}>
             I am {this.props.name} and I am {this.props.age} years old
           </p>

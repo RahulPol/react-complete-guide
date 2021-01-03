@@ -4,6 +4,7 @@ import "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import WithClass from "../components/higherOrderComponents/WithClass";
+import AuthContext from "../context/auth-context";
 
 // Component creation life cycle
 // 1. constructor(props)
@@ -64,6 +65,7 @@ class App extends Component {
     showPersons: true,
     showCockpit: true,
     changeCounter: 0,
+    isAuthenticated: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -71,7 +73,12 @@ class App extends Component {
     return state;
   }
 
+  // following code adds a context property in class based
+  // component so that you can use context anywhere in class, check out componentDidMount
+  static contextType = AuthContext;
+
   componentDidMount() {
+    console.log("[App.js] - authenticated", this.context.authenticated);
     console.log("[App.js] componentDidMount");
   }
 
@@ -138,6 +145,10 @@ class App extends Component {
     return classes.join(" ");
   };
 
+  loginHandler = () => {
+    this.setState({ isAuthenticated: true });
+  };
+
   render() {
     console.log("[App.js] rendering...");
     return (
@@ -149,23 +160,30 @@ class App extends Component {
         >
           Remove Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            classes={this.getClassesForCockpit()}
-            // persons={this.state.persons}
-            showPersons={this.state.showPersons}
-            click={this.togglePersonsHandler}
-          />
-        ) : null}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.isAuthenticated,
+            login: this.loginHandler,
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.appTitle}
+              classes={this.getClassesForCockpit()}
+              // persons={this.state.persons}
+              showPersons={this.state.showPersons}
+              click={this.togglePersonsHandler}
+            />
+          ) : null}
 
-        {this.state.showPersons ? (
-          <Persons
-            persons={this.state.persons}
-            click={this.deletePersonHandler}
-            changed={this.nameChangedHandler}
-          />
-        ) : null}
+          {this.state.showPersons ? (
+            <Persons
+              persons={this.state.persons}
+              click={this.deletePersonHandler}
+              changed={this.nameChangedHandler}
+            />
+          ) : null}
+        </AuthContext.Provider>
       </WithClass>
     );
   }
